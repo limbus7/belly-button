@@ -14,7 +14,7 @@ function init(){
     let dropdown = d3.select("#selDataset");
 
 
-    //access sample data using d3 and get the sample ids and populate in drop down menu
+    //Get the sample data using d3 and get the sample ids and populate in drop down menu
     d3.json(url).then((data) => {
     let sample_ids = data.names;
     console.log(sample_ids);
@@ -53,9 +53,7 @@ d3.json(url).then((data) => {
     let otu_ids = first_sample.otu_ids.slice(0,10);
     let otu_labels = first_sample.otu_labels.slice(0,10);
     
-    console.log(sample_values);
-    console.log(otu_ids);
-    console.log(otu_labels);
+  
 
     //create the trace for bar chart
     let BarChart_trace = {
@@ -97,10 +95,6 @@ function BubbleChart(selectedValue){
         let otu_ids = first_sample.otu_ids;
         let otu_labels = first_sample.otu_labels;
 
-
-        console.log(sample_values);
-        console.log(otu_ids);
-        console.log(otu_labels);
 
         //create the trace for bubble chart
         let bubble_trace = {
@@ -152,13 +146,12 @@ function Demographics(selectedValue){
     });
 };
 
-// //define the function when the dropdown detects a change (function name as defined in index.html)
-function optionChanged(value){
-    //log the value for debug
-    console.log(value);
-    BarChart(value);
-    BubbleChart(value);
-    DemographicsChart(value);
+ //Toggle to new plots when option is changed
+    function optionChanged(electedValue){
+    console.log(selectedValue);
+    BarChart(selectedValue);
+    BubbleChart(selectedValue);
+    DemographicsChart(selectedValue);
 
 };
 
